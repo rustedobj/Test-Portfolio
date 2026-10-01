@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#10100f">
+	<meta name="description" content="Selected creative work by Your Name.">
+	<title>Your Name — Creative Portfolio</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			color-scheme: dark;
+			--ink: #f4f1eb;
+			--muted: #999891;
+			--base: #10100f;
+			--panel: #191917;
+			--line: #343430;
+			--hot: #f04458;
+			--fresh: #c8e37c;
+			--page: 1240px;
+		}
+
+		* { box-sizing: border-box; }
+
+		html { scroll-behavior: smooth; }
+
+		body {
+			margin: 0;
+			background: var(--base);
+			color: var(--ink);
+			font-family: "DM Sans", sans-serif;
+			font-size: 16px;
+			line-height: 1.5;
+		}
+
+		a { color: inherit; }
+
+		.wrap {
+			width: min(var(--page), calc(100% - 64px));
+			margin-inline: auto;
+		}
+
+		.topbar {
+			position: absolute;
+			z-index: 2;
+			inset: 0 0 auto;
+			padding: 27px 0;
+		}
+
+		.nav {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 24px;
+		}
+
+		.wordmark {
+			font: 700 17px/1 "Space Grotesk", sans-serif;
+			text-decoration: none;
+			letter-spacing: 0;
+		}
+
+		.wordmark span { color: var(--hot); }
+
+		.nav-links {
+			display: flex;
+			align-items: center;
+			gap: 34px;
+		}
+
+		.nav-links a {
+			color: #c3c1ba;
+			font-size: 13px;
+			text-decoration: none;
+			transition: color 180ms ease;
+		}
+
+		.nav-links a:hover, .nav-links a:focus-visible { color: var(--fresh); }
+
+		.nav-links .contact-link {
+			padding: 10px 15px;
+			border: 1px solid #5e5c55;
+			border-radius: 2px;
+			color: var(--ink);
+		}
+
+		.hero {
+			position: relative;
+			display: grid;
+			min-height: 690px;
+			align-items: center;
+			padding: 132px 0 86px;
+			overflow: hidden;
+			border-bottom: 1px solid var(--line);
+			background-image: repeating-linear-gradient(0deg, transparent 0, transparent 79px, #ffffff08 80px), repeating-linear-gradient(90deg, transparent 0, transparent 79px, #ffffff08 80px);
+			background-size: 80px 80px;
+		}
+
+		.hero::before {
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(90deg, var(--base) 0%, #10100fe8 56%, #10100f80 100%);
+			content: "";
+			pointer-events: none;
+		}
+
+		.hero-inner {
+			position: relative;
+			display: grid;
+			grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+			align-items: center;
+			gap: 46px;
+		}
+
+		.eyebrow {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			margin: 0 0 25px;
+			color: var(--fresh);
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: 1.5px;
+			text-transform: uppercase;
+		}
+
+		.eyebrow::before {
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+			background: var(--fresh);
+			content: "";
+		}
+
+		h1, h2, h3, p { margin-top: 0; }
+
+		h1 {
+			max-width: 760px;
+			margin-bottom: 24px;
+			font: 700 78px/.98 "Space Grotesk", sans-serif;
+			letter-spacing: 0;
+		}
+
+		h1 span { color: var(--hot); }
+
+		.hero-copy {
+			max-width: 490px;
+			margin-bottom: 32px;
+			color: #b9b7b0;
+			font-size: 18px;
+			line-height: 1.65;
+		}
+
+		.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+		.button {
+			display: inline-flex;
+			min-height: 48px;
+			align-items: center;
+			justify-content: center;
+			gap: 14px;
+			padding: 0 18px;
+			border: 1px solid var(--hot);
+			background: var(--hot);
+			color: #17110f;
+			font-size: 13px;
+			font-weight: 700;
+			text-decoration: none;
+			transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+		}
+
+		.button:hover { transform: translateY(-2px); background: #ff6575; }
+
+		.button.secondary {
+			border-color: #55534e;
+			background: transparent;
+			color: var(--ink);
+		}
+
+		.button.secondary:hover { border-color: var(--fresh); color: var(--fresh); }
+
+		.hero-art {
+			position: relative;
+			justify-self: end;
+			width: min(100%, 410px);
+			aspect-ratio: 4 / 5;
+			margin: 0;
+			border: 1px solid #ffffff24;
+			background: var(--panel);
+			transform: rotate(2deg);
+		}
+
+		.hero-art img {
+			width: 100%;
+			height: 100%;
+			display: block;
+			object-fit: cover;
+			filter: saturate(.78);
+		}
+
+		.hero-art::after {
+			position: absolute;
+			inset: 12px -12px -12px 12px;
+			z-index: -1;
+			border: 1px solid var(--hot);
+			content: "";
+		}
+
+		.art-label {
+			position: absolute;
+			right: 12px;
+			bottom: 12px;
+			left: 12px;
+			display: flex;
+			justify-content: space-between;
+			padding: 12px 14px;
+			background: #10100fdf;
+			color: var(--ink);
+			font-size: 11px;
+			letter-spacing: 0;
+			text-transform: uppercase;
+		}
+
+		.section { padding: 104px 0; }
+
+		.section-head {
+			display: flex;
+			align-items: end;
+			justify-content: space-between;
+			gap: 24px;
+			margin-bottom: 35px;
+		}
+
+		.section-kicker {
+			margin-bottom: 9px;
+			color: var(--hot);
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: 1.5px;
+			text-transform: uppercase;
+		}
+
+		h2 {
+			margin-bottom: 0;
+			font: 600 42px/1.1 "Space Grotesk", sans-serif;
+			letter-spacing: 0;
+		}
+
+		.section-note {
+			max-width: 310px;
+			margin: 0 0 3px;
+			color: var(--muted);
+			font-size: 14px;
+		}
+
+		.projects {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 18px;
+		}
+
+		.project { min-width: 0; }
+
+		.project-image {
+			position: relative;
+			display: block;
+			aspect-ratio: 1.12 / 1;
+			overflow: hidden;
+			background: var(--panel);
+		}
+
+		.project-image img {
+			width: 100%;
+			height: 100%;
+			display: block;
+			object-fit: cover;
+			transition: transform 350ms ease, filter 350ms ease;
+			filter: saturate(.8);
+		}
+
+		.project:hover .project-image img { transform: scale(1.045); filter: saturate(1); }
+
+		.project-number {
+			position: absolute;
+			top: 12px;
+			left: 12px;
+			padding: 7px 9px;
+			background: var(--fresh);
+			color: #171711;
+			font: 700 11px/1 "Space Grotesk", sans-serif;
+		}
+
+		.project-meta {
+			display: flex;
+			justify-content: space-between;
+			gap: 14px;
+			padding-top: 16px;
+		}
+
+		.project-meta h3 {
+			margin-bottom: 5px;
+			font: 600 20px/1.2 "Space Grotesk", sans-serif;
+		}
+
+		.project-meta p {
+			margin-bottom: 0;
+			color: var(--muted);
+			font-size: 12px;
+		}
+
+		.project-arrow {
+			flex: 0 0 auto;
+			color: var(--hot);
+			font-size: 20px;
+			line-height: 1;
+		}
+
+		.about {
+			border-top: 1px solid var(--line);
+			border-bottom: 1px solid var(--line);
+			background: #171715;
+		}
+
+		.about-inner {
+			display: grid;
+			grid-template-columns: .8fr 1.2fr;
+			gap: 70px;
+		}
+
+		.about-copy { max-width: 620px; }
+
+		.about-copy p {
+			margin: 0;
+			color: #c1bfb8;
+			font-size: 18px;
+			line-height: 1.75;
+		}
+
+		.about-copy p + p { margin-top: 18px; }
+
+		.skills {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 9px;
+			margin-top: 25px;
+		}
+
+		.skills span {
+			padding: 8px 11px;
+			border: 1px solid #44443d;
+			color: #d6d3ca;
+			font-size: 12px;
+		}
+
+		.contact {
+			display: flex;
+			align-items: end;
+			justify-content: space-between;
+			gap: 32px;
+			padding: 74px 0;
+		}
+
+		.contact h2 { max-width: 680px; font-size: 54px; }
+
+		.contact h2 span { color: var(--hot); }
+
+		footer {
+			padding: 20px 0 28px;
+			border-top: 1px solid var(--line);
+			color: var(--muted);
+			font-size: 11px;
+		}
+
+		.footer-inner { display: flex; justify-content: space-between; gap: 20px; }
+
+		.footer-links { display: flex; gap: 20px; }
+
+		.footer-links a { text-decoration: none; }
+		.footer-links a:hover { color: var(--fresh); }
+
+		@media (max-width: 850px) {
+			.hero { min-height: 620px; }
+			.hero-inner { grid-template-columns: minmax(0, 1fr) 250px; gap: 28px; }
+			h1 { font-size: 62px; }
+			.projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+			.about-inner { gap: 38px; }
+		}
+
+		@media (max-width: 620px) {
+			.wrap { width: min(var(--page), calc(100% - 36px)); }
+			.topbar { padding: 20px 0; }
+			.nav { align-items: flex-start; }
+			.nav-links { gap: 14px; }
+			.nav-links a { font-size: 11px; }
+			.nav-links .contact-link { padding: 7px 9px; }
+			.hero { min-height: auto; padding: 130px 0 64px; }
+			.hero-inner { grid-template-columns: 1fr; gap: 42px; }
+			h1 { max-width: 540px; font-size: 54px; }
+			.hero-copy { font-size: 16px; }
+			.hero-art { width: min(76%, 320px); justify-self: center; }
+			.section { padding: 72px 0; }
+			.section-head { display: block; }
+			h2 { font-size: 34px; }
+			.section-note { margin-top: 13px; }
+			.projects { grid-template-columns: 1fr; gap: 30px; }
+			.project-image { aspect-ratio: 1.25 / 1; }
+			.about-inner { grid-template-columns: 1fr; gap: 24px; }
+			.about-copy p { font-size: 16px; }
+			.contact { display: block; padding: 60px 0; }
+			.contact h2 { margin-bottom: 25px; font-size: 42px; }
+			.footer-inner { flex-direction: column; }
+			.footer-links { flex-wrap: wrap; }
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			html { scroll-behavior: auto; }
+			*, *::before, *::after { transition-duration: .01ms !important; }
+		}
+	</style>
+</head>
+<body>
+	<header class="topbar">
+		<nav class="nav wrap" aria-label="Main navigation">
+			<a class="wordmark" href="#home">YOUR NAME<span>.</span></a>
+			<div class="nav-links">
+				<a href="#work">Work</a>
+				<a href="#about">About</a>
+				<a class="contact-link" href="#contact">Let's talk &nearr;</a>
+			</div>
+		</nav>
+	</header>
+
+	<main>
+		<section class="hero" id="home">
+			<div class="hero-inner wrap">
+				<div>
+					<p class="eyebrow">Independent creative / available for projects</p>
+					<h1>Good stories<br>stay <span>with you.</span></h1>
+					<p class="hero-copy">I create thoughtful visual work for people and ideas worth paying attention to.</p>
+					<div class="actions">
+						<a class="button" href="#work">Explore selected work <span aria-hidden="true">&darr;</span></a>
+						<a class="button secondary" href="#contact">Get in touch <span aria-hidden="true">&nearr;</span></a>
+					</div>
+				</div>
+				<figure class="hero-art">
+					<img src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=900&q=85" alt="A camera set up to capture a film scene">
+					<figcaption class="art-label"><span>Selected frame</span><span>01 / 03</span></figcaption>
+				</figure>
+			</div>
+		</section>
+
+		<section class="section wrap" id="work">
+			<div class="section-head">
+				<div>
+					<p class="section-kicker">A few recent things</p>
+					<h2>Selected work</h2>
+				</div>
+				<p class="section-note">A small collection of projects, experiments, and visual stories.</p>
+			</div>
+			<div class="projects">
+				<article class="project">
+					<a class="project-image" href="#contact" aria-label="Ask about Motion Study 01">
+						<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85" alt="A wide open landscape in warm evening light" loading="lazy">
+						<span class="project-number">01</span>
+					</a>
+					<div class="project-meta">
+						<div><h3>Motion Study 01</h3><p>Editing / Motion</p></div>
+						<span class="project-arrow" aria-hidden="true">&nearr;</span>
+					</div>
+				</article>
+				<article class="project">
+					<a class="project-image" href="#contact" aria-label="Ask about After Hours">
+						<img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=85" alt="A dramatic night sky above a quiet landscape" loading="lazy">
+						<span class="project-number">02</span>
+					</a>
+					<div class="project-meta">
+						<div><h3>After Hours</h3><p>Campaign / Visual direction</p></div>
+						<span class="project-arrow" aria-hidden="true">&nearr;</span>
+					</div>
+				</article>
+				<article class="project">
+					<a class="project-image" href="#contact" aria-label="Ask about Moving Image">
+						<img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=85" alt="A vintage cinema projector in a dark room" loading="lazy">
+						<span class="project-number">03</span>
+					</a>
+					<div class="project-meta">
+						<div><h3>Moving Image</h3><p>Short film / Post-production</p></div>
+						<span class="project-arrow" aria-hidden="true">&nearr;</span>
+					</div>
+				</article>
+			</div>
+		</section>
+
+		<section class="section about" id="about">
+			<div class="about-inner wrap">
+				<div>
+					<p class="section-kicker">A little about me</p>
+					<h2>Small team.<br>Big attention.</h2>
+				</div>
+				<div class="about-copy">
+					<p>I'm a creative who likes sharp ideas, considered details, and making the final frame feel just right. I work across the whole process, from the first rough thought to the finished piece.</p>
+					<p>Based in your city. Open to good collaborations everywhere.</p>
+					<div class="skills" aria-label="Services">
+						<span>Video editing</span><span>Motion design</span><span>Creative direction</span><span>Visual storytelling</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="contact wrap" id="contact">
+			<div>
+				<p class="section-kicker">Have something in mind?</p>
+				<h2>Let's make it<br><span>worth watching.</span></h2>
+			</div>
+			<a class="button" href="mailto:hello@example.com">Email me <span aria-hidden="true">&nearr;</span></a>
+		</section>
+	</main>
+
+	<footer>
+		<div class="footer-inner wrap">
+			<span>&copy; 2026 Your Name. Made with intention.</span>
+			<div class="footer-links">
+				<a href="https://instagram.com/">Instagram</a>
+				<a href="https://youtube.com/">YouTube</a>
+				<a href="https://linkedin.com/">LinkedIn</a>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
